@@ -1,20 +1,29 @@
 const App = () => {
   const course = 'Half Stack application development'
-  const part1 = 'Fundamentals of React'
-  const exercises1 = 10
-  const part2 = 'Using props to pass data'
-  const exercises2 = 7
-  const part3 = 'State of a component'
-  const exercises3 = 14
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
 
   return (
     <div>
       <Header course={course}/>
-      <Content 
-        part1 ={part1}part2 ={part2}part3 ={part3} 
-        exercises1={exercises1} exercises2={exercises2} exercises3={exercises3} />
 
-      <Total exercises1={exercises1} exercises2={exercises2} exercises3={exercises3}/>
+      <Content 
+        parts = {parts} 
+        />
+
+      {/* <Totalparts  parts={parts} /> */}
 
     </div>
   )
@@ -27,27 +36,39 @@ const Header = (pars) => {
   )
 }
 
-const Content = (pars) => {
 
+
+const Content = (pars) => {
+  const parts = pars.parts
+  
   return(<div>
-            <Part part={pars.part1} exercises={pars.exercises1} />
-            <Part part={pars.part2} exercises={pars.exercises2} />
-            <Part part={pars.part3} exercises={pars.exercises3} />
+            <Part part={parts[0]} 
+            />
+            <Part part={parts[1]} 
+            /><Part part={parts[2]} 
+            />
+           
           </div>
   )
   
 }
+
+
 const Part = (pars) =>{
+  console.log(pars)
+  console.log(pars.name)
     return(
       <p>
-      {pars.part} {pars.exercises}
+      {pars.part.name} {pars.part.exercises}
     </p>
     )
 }
 
+
+
 const Total = (pars) => {
   
-  return <p>Number of exercises {pars.exercises1 + pars.exercises2 + pars.exercises3}</p>
+  return <p>Number of exercises {pars.part1.exercises + pars.part2.exercises + pars.part3.exercises}</p>
 }
 
 export default App
